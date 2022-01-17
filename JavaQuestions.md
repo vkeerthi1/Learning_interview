@@ -11,8 +11,10 @@ We need Serialization for the following reasons:
 * A Java object is serializable if and only if its class or any of its parent classes implement either the java.io.Serializable interface or its subinterface, java.io.Externalizable.
 * In the Serialization process, we convert an object’s state into a byte stream so that it could be transferred from one JVM to the other and revert the byte stream back into the original object.
 
+```diff
 Case – 1: If Superclass is Serializable, then, by default, its Subclasses are also serializable. 
 Case – 2: A Subclass can be serialized if it implements the Serializable Interface even if a Superclass does not implement the Serializable Interface.
+```
 
 ###  lamda do runnable interface
 ###  Map how do we use with Java8
