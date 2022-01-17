@@ -1,5 +1,4 @@
-# By default, java cloning is ‘field by field copy’ i.e. as the Object class does not have idea about the structure of class on which clone() method will be invoked.
-# So, JVM when called for cloning, do following things:
+# By default, java cloning is ‘field by field copy’ i.e. as the Object class does not have idea about the structure of class on which clone() method will be invoked.So, JVM when called for cloning, do following things:
 
 • If the class has only primitive data type members then a completely new copy of the object will be created and the reference to the new object copy will be returned.
 • If the class contains members of any class type then only the object references to those members are copied and hence the member references in both the original object as well as the cloned object refer to the same object.
@@ -46,18 +45,18 @@ finalize is a method that gets called on an instance of an Object when it is gar
 finally is a Java keyword used in exception handling to indicate a block of code that should always be run whether an exception is thrown or not.
 
 # What’s the difference between a ClassNotFoundException and NoClassDefFoundError?
-A ClassNotFoundException means the class file for a requested class is not on the classpath of the application.
-A NoClassDefFoundErrormeans that the class file existed at runtime, but for some reason the class could not be turned into a Class definition.
+* A ClassNotFoundException means the class file for a requested class is not on the classpath of the application.
+* A NoClassDefFoundErrormeans that the class file existed at runtime, but for some reason the class could not be turned into a Class definition.
  A common cause is an exception being thrown in static initialization blocks.
 
 # Why isn’t String‘s .length() accurate?
 It isn’t accurate because it will only account for the number of characters within the String. In other words, it will fail to account for code points outside of what is called the BMP (Basic Multilingual Plane), that is, code points with a value of U+10000 or greater.
-The reason is historical: when Java was first defined, one of its goal was to treat all text as Unicode; but at this time, Unicode did not define code points outside of the BMP. By the time Unicode defined such code points, it was too late for char to be changed.
+* The reason is historical: when Java was first defined, one of its goal was to treat all text as Unicode; but at this time, Unicode did not define code points outside of the BMP. By the time Unicode defined such code points, it was too late for char to be changed.
 This means that code points outside the BMP are represented with two chars in Java, in what is called a surrogate pair. Technically, a char in Java is a UTF-16 code unit.
 The correct way to count the real numbers of characters within a String, i.e. the number of code points, is either:
-someString.codePointCount(0, someString.length())
+* someString.codePointCount(0, someString.length())
 or, with Java 8:
-someString.codePoints().count()
+* someString.codePoints().count()
 
 Given two double values d1, d2, why isn’t it reliable to test their equality using:
 d1 == d2
@@ -89,8 +88,8 @@ final byte[] bytes = someString.getBytes(StandardCharsets.UTF_8);
 
 
 # In this code:
-# IntStream.range(0, 10).forEach(System.out::println);
-# what is the inferred type of the method reference System.out::println? 
+ IntStream.range(0, 10).forEach(System.out::println);
+what is the inferred type of the method reference System.out::println? 
 It is an IntConsumer.
 IntStream.range(0, 10) returns an IntStream, and 
 IntStream defines a .forEach() method accepting an IntConsumer as an argument, whose prototype is:
@@ -123,10 +122,10 @@ list.remove(2);
 What will be the contents of the list after this operation and why?
 The contents will be:
 [ 1, 2 ]
-The reason is that there are two removal operations on a List:
+* The reason is that there are two removal operations on a List:
 • remove(int index)
 • remove(Object obj)
-The JVM will always select the most specific overload of a method; and here we pass an int as an argument,
+* The JVM will always select the most specific overload of a method; and here we pass an int as an argument,
  the code therefore removes the element at index 2.
 To remove the _element_ 2 from the list, the following needs to be written:
 list.remove(Integer.valueOf(2));
@@ -190,11 +189,13 @@ The marker interface in Java is an interfaces with no field or methods.
 An example of a marker interface is a Serializable, Clonable and Remote interface. These are used to indicate something to the compiler or JVM.
 
 # How are Annotations better than a Marker Interfaces?
-Annotations lets one achieve the same purpose of conveying metadata about the class to its consumers without creating a separate type for it. Annotations are more powerful, too, letting programmers pass more sophisticated information to classes that “consume” it.
-What are checked and unchecked exceptions? When do you use them?
+* Annotations lets one achieve the same purpose of conveying metadata about the class to its consumers without creating a separate type for it. Annotations are more powerful, too, letting programmers pass more sophisticated information to classes that “consume” it.
+
+# What are checked and unchecked exceptions? When do you use them?
 A checked exception is an exception that must be catch, they are checked by the compiler. 
 An unchecked exception is mostly runtime exception, and is not required to be catch. In general, use checked exception when the situation is recoverable (retry, display reasonable error message).
-int a = 1L; won’t compile and int b = 0; b += 1L; compiles fine. Why ?
+
+# int a = 1L; won’t compile and int b = 0; b += 1L; compiles fine. Why ?
 When += is used, that’s a compound statement and the compiler internally casts it. 
 Whereas in the first case, the compiler straightaway shouts at you since it is a direct statement.
 Compiler behavior and statement types can be confusing, so questions like this will test a candidate's grasp of these concepts.
