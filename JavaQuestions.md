@@ -2,14 +2,14 @@
 
 ###  Where do we use serializable ? and what happens if we don’t do it
 We need Serialization for the following reasons:
-	* Communication: Serialization involves the procedure of object serialization and transmission. This enables multiple computer systems to design, share and execute objects simultaneously.
-	* Caching: The time consumed in building an object is more compared to the time required for de-serializing it. Serialization minimizes time consumption by caching the giant objects.
-	* Deep Copy: Cloning process is made simple by using Serialization. An exact replica of an object is obtained by serializing the object to a byte array, and then de-serializing it.
-	* Cross JVM Synchronization: The major advantage of Serialization is that it works across different JVMs that might be running on different architectures or Operating Systems
-	* Persistence: The State of any object can be directly stored by applying Serialization on to it and stored in a database so that it can be retrieved later.
+* Communication: Serialization involves the procedure of object serialization and transmission. This enables multiple computer systems to design, share and execute objects simultaneously.
+* Caching: The time consumed in building an object is more compared to the time required for de-serializing it. Serialization minimizes time consumption by caching the giant objects.
+* Deep Copy: Cloning process is made simple by using Serialization. An exact replica of an object is obtained by serializing the object to a byte array, and then de-serializing it.
+* Cross JVM Synchronization: The major advantage of Serialization is that it works across different JVMs that might be running on different architectures or Operating Systems
+* Persistence: The State of any object can be directly stored by applying Serialization on to it and stored in a database so that it can be retrieved later.
  
-	* A Java object is serializable if and only if its class or any of its parent classes implement either the java.io.Serializable interface or its subinterface, java.io.Externalizable.
-	* In the Serialization process, we convert an object’s state into a byte stream so that it could be transferred from one JVM to the other and revert the byte stream back into the original object.
+* A Java object is serializable if and only if its class or any of its parent classes implement either the java.io.Serializable interface or its subinterface, java.io.Externalizable.
+* In the Serialization process, we convert an object’s state into a byte stream so that it could be transferred from one JVM to the other and revert the byte stream back into the original object.
 
 Case – 1: If Superclass is Serializable, then, by default, its Subclasses are also serializable. 
 Case – 2: A Subclass can be serialized if it implements the Serializable Interface even if a Superclass does not implement the Serializable Interface.
@@ -23,10 +23,10 @@ Case – 2: A Subclass can be serialized if it implements the Serializable Inter
 ###  Spring transaction management and implementation
 ###  Future and completable future
  
-	* A CompletableFuture class is also a Future class. It implements the Future interface. 
-	* A Future Object is Blocking , A Completable Future is non-blocking
-	* Threads cannot be combined using Future objects, they can be combined using Completable Future
-	* CompletableFuture provides a better mechanism to run threads in a pipleline. You can use the method thenApply() to achieve this.
+* A CompletableFuture class is also a Future class. It implements the Future interface. 
+* A Future Object is Blocking , A Completable Future is non-blocking
+* Threads cannot be combined using Future objects, they can be combined using Completable Future
+* CompletableFuture provides a better mechanism to run threads in a pipleline. You can use the method thenApply() to achieve this.
 
 ```
 CompletableFuture.supplyAsync(() -> d.sampleThread1()).thenApply(message -> d.sampleThread2(message)).thenAccept(finalMsg -> System.out.println(finalMsg));
@@ -39,8 +39,7 @@ CompletableFuture.supplyAsync(() -> d.sampleThread1()).thenApply(message -> d.sa
 4. Multiple futures cannot be chained together.
 
 
-
-Crud repo and JPA Repo
+#### Crud repo and JPA Repo
 JpaRepository extends PagingAndSortingRepository that extends CrudRepository.
 CrudRepository mainly provides CRUD operations.
 
@@ -49,10 +48,10 @@ PagingAndSortingRepository provide methods to perform pagination and sorting of 
 JpaRepository provides JPA related methods such as flushing the persistence context and deleting of records in batch.
 Due to their inheritance nature, JpaRepository will have all the behaviors of CrudRepository and PagingAndSortingRepository. So if you don't need the repository to have the functions provided by JpaRepository and PagingAndSortingRepository , use CrudRepository.
 
-Why ResponseEntity
-	* ResponseEntity is an extension of HttpEntity that represents an HTTP response including status, headers and body. ResponseEntity allows you to modify the response with optional headers and status code. 
-	* ResponseEntity represents the entire HTTP response. You have more control over response by including body, headers and status code.
-	* ResponseEntity is used when you need to change HTTP headers or HTTP status code based upon your business logic or incoming request. ResponseEntity wraps the original object as its body which is optional. 
+### Why ResponseEntity
+* ResponseEntity is an extension of HttpEntity that represents an HTTP response including status, headers and body. ResponseEntity allows you to modify the response with optional headers and status code. 
+* ResponseEntity represents the entire HTTP response. You have more control over response by including body, headers and status code.
+* ResponseEntity is used when you need to change HTTP headers or HTTP status code based upon your business logic or incoming request. ResponseEntity wraps the original object as its body which is optional. 
 ```
 @GetMapping("/hello")
 ResponseEntity<String> hello() {
@@ -98,26 +97,26 @@ POST is a HTTP method used to create a new resource in a collection of resources
 If you do the same request 2 times, 2 resources are created. Due to this reason, POST method is not idempotent and unsafe.
 
 ### Method reference
-Reference to a Static Method
+* Reference to a Static Method
 ```
 List<String> messages = Arrays.asList("hello", "baeldung", "readers!");
 ```
-We can achieve this by leveraging a simple lambda expression calling the StringUtils.capitalize() method directly:
+* We can achieve this by leveraging a simple lambda expression calling the StringUtils.capitalize() method directly:
 ```
 messages.forEach(word -> StringUtils.capitalize(word));
 messages.forEach(StringUtils::capitalize);
 ```
 
-Reference to an Instance Method from instance
+*  Reference to an Instance Method from instance
 
-Reference to an Instance Method from Class Type
+*  Reference to an Instance Method from Class Type
 ```
 List<Integer> numbers = Arrays.asList(5, 3, 50, 24, 40, 2, 9, 18);
 numbers.stream().sorted((a, b) -> a.compareTo(b));
 numbers.stream().sorted(Integer::compareTo);
 ```
 
-Reference to a Constructor
+* Reference to a Constructor
 List<Integer> integers = IntStream.range(1, 100).boxed().collect(Collectors.toCollection(ArrayList::new));
 
 #### Functional interfaces 
@@ -132,7 +131,7 @@ default Consumer<T>	andThen(Consumer<? super T> after)
 ```
 
 Why Functional Interface has only one method  -> lamda to recognize which to use. 
- Scope of Lambda  ->
+### Scope of Lambda  ->
 local variables can used in lamda to be effectively final(cannot be reassigned)
 
 
