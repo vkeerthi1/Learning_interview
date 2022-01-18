@@ -12,14 +12,14 @@ public class ImmutableExample {
     public static void main(String[] args) {
 
         // Getting immutable class only with required parameters
-        Immutable immutableClass = new Immutable.ImmutableClassBuilder(1, "Pankaj").build();
+        Immutable immutableClass = new Immutable.ImmutableClassBuilder(1, "JAVA").build();
 
         HashMap<String,String> hm = new HashMap<String, String>();
-        hm.put("Name", "Pankaj");
-        hm.put("City", "San Jose");
+        hm.put("Name", "JAVA");
+        hm.put("City", "South Africa");
         // Getting immutable class with optional parameters
-        Immutable immutableClass1 = new Immutable.ImmutableClassBuilder(1, "Pankaj")
-                .setCompany("Apple").setProperties(hm).build();
+        Immutable immutableClass1 = new Immutable.ImmutableClassBuilder(1, "JAVA")
+                .setCompany("Soth").setProperties(hm).build();
 
         //Testing immutability
         HashMap<String,String> hm1 = immutableClass1.getProperties();
