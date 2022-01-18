@@ -31,3 +31,57 @@ Why is that this principle is required?
 OCP is important since classes may come to us through third-party libraries. We should be able to extend those classes
 without worrying if those base classes can support our extensions. But inheritance may lead to subclasses which depend on base class implementation.
 To avoid this, use of interfaces is recommended. This additional abstraction leads to loose coupling.
+
+```
+public interface Shape
+{
+public double calculateArea();
+}
+ 
+public class Rectangle implements Shape
+{
+double length;
+double width;
+public double calculateArea()
+{
+return length * width;
+}
+}
+ 
+public class Circle implements Shape
+{
+public double radius;
+public double calculateArea()
+{
+return (22/7)*radius*radius;
+}
+}
+
+public class AreaCalculator
+{
+public double calculateShapeArea(Shape shape)
+{
+return shape.calculateArea();
+}
+}
+
+```
+
+#### Liskov Substitution Principle in Java
+Why is that this principle is required?
+This avoids misusing inheritance. It helps us conform to the “is-a” relationship.We can also say that subclasses must fulfill a contract defined by the base class. 
+
+
+#### Interface Segregation Principle
+Robert C. Martin describes it as clients should not be forced to implement unnecessary methods which they will not use.
+
+According to Interface segregation principle a client, no matter what should never be forced to implement an interface that it does not use or the client should never be obliged to depend on any method, which is not used by them.
+
+#### Dependency Inversion Principle
+Robert C. Martin describes it as it depends on abstractions not on concretions.According to it, the high-level module must never rely on any low-level module . 
+
+Why is that this principle is required?
+It allows a programmer to remove hardcoded dependencies so that the application becomes loosely coupled and extendable.
+
+
+
